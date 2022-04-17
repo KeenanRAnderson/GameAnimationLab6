@@ -47,29 +47,24 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Debug.Log("Move");
-        Vector2 MoveVector = context.ReadValue<Vector2>();
+        Vector2 MoveVector = context.ReadValue<Vector2>();  
         if (MoveVector.x < 0)
         {
             isMoving = true;
             moveDir = Direction.Left;
             remAnimation.TurnLeft();
+            remAnimation.SetMove();
         }
         else if (MoveVector.x > 0)
         {
             isMoving = true;         
             moveDir = Direction.Right;
             remAnimation.TurnRight();
-        }
-        else
-        {
-            isMoving = false;
-        }
-        if (isMoving)
-        {
             remAnimation.SetMove();
         }
         else
         {
+            isMoving = false;
             remAnimation.SetStop();
         }
     }
