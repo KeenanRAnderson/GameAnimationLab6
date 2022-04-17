@@ -987,21 +987,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1699770197}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1699770199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699770198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dbe3ae6591b0d42bac20a7b43e9516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  remAnimation: {fileID: 1699770201}
-  MoveSpeed: 4.5
-  JumpHeight: 2
 --- !u!114 &1699770200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1015,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1699770199}
+      - m_Target: {fileID: 1699770202}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -1046,7 +1031,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1699770199}
+      - m_Target: {fileID: 1699770202}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -1060,6 +1045,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5c6cbe4d-d2ba-4cdc-b87e-3e416c26aa3f
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 59d2d6bc-24e3-48df-8d0b-919152eb8ef9
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88bfa539-38cc-4d4e-91c9-da88a45c8b83
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b89afc4-1a4c-49f1-b7f6-33588a92e3d4
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3716a114-0d53-4701-83ce-9a7a870b8b2d
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11fb94ea-1778-4456-a836-61f4ce55275f
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d8938d-2fa5-4947-9d91-c5a52fa8fb71
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b2016b1-0d88-4f34-b548-4d6993b28151
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 23a80263-d252-4f5d-b825-0c57e8430337
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4503cbe1-6280-46a4-8c6b-6eb5b52cde34
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86d1f2e0-35d0-49b3-a500-445bb1f8825b
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1088,6 +1113,21 @@ MonoBehaviour:
   capeSpeed: 200
   minCapeRotation: 5
   maxCapeRotation: 75
+--- !u!114 &1699770202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699770198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d813f2c6280404f41b232e84f6d39cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remAnimation: {fileID: 1699770201}
+  MoveSpeed: 4
+  JumpHeight: 2.5
 --- !u!4 &1699770203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1225984864564795686, guid: e8ca29fea5fa37c4e9d8c495377713b5,
