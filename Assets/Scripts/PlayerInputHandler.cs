@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] RemAnimation remAnimation;
     public float MoveSpeed;
     public float JumpHeight;
     
@@ -15,6 +16,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Transform tf;
     private Collider col;
     private Rigidbody rb;
+
     void Start()
     {
         jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
@@ -45,29 +47,34 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Debug.Log("Move");
-        Vector2 MoveVector = context.ReadValue<Vector2>();
+        Vector2 MoveVector = context.ReadValue<Vector2>();  
         if (MoveVector.x < 0)
         {
             isMoving = true;
             moveDir = Direction.Left;
+            remAnimation.TurnLeft();
+            remAnimation.SetMove();
         }
         else if (MoveVector.x > 0)
         {
-            isMoving = true;
-            moveDir = Direction.Right;            
+            isMoving = true;         
+            moveDir = Direction.Right;
+            remAnimation.TurnRight();
+            remAnimation.SetMove();
         }
         else
         {
             isMoving = false;
+            remAnimation.SetStop();
         }
     }
     public void OnJump(InputAction.CallbackContext context)
-    {
-        
+    {        
         if (IsGrounded() && context.started)
         {
             Debug.Log("Add force");
             rb.AddForce(jumpForce * Vector2.up, ForceMode.Impulse);
+            remAnimation.SetJump();
         }
     }
     private bool IsGrounded()
