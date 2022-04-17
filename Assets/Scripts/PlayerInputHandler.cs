@@ -75,8 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     public void OnJump(InputAction.CallbackContext context)
-    {
-        
+    {        
         if (IsGrounded() && context.started)
         {
             Debug.Log("Add force");
