@@ -34,7 +34,30 @@ public class RemAnimation : MonoBehaviour
     [SerializeField] float minCapeRotation;
     [SerializeField] float maxCapeRotation;
 
+    private float _capeGoal;
+    private float capeGoal
+    {
+        get { return _capeGoal; }
+        set
+        {
+            _capeGoal = value;
+            if (cape.transform.rotation.eulerAngles.z >= 360f - _capeGoal)
+            {
+                capeState = CapeState.MovingUp;
+            }
+            else
+            {
+                capeState = CapeState.MovingDown;
+            }
+        }
+    }
+
     private int limbDirection = 1;   // This will be either 1 or negative 1
+
+    public void Start()
+    {
+        capeGoal = minCapeRotation;
+    }
 
     void Update()
     {
@@ -96,9 +119,9 @@ public class RemAnimation : MonoBehaviour
                 angles = cape.transform.rotation.eulerAngles;
                 angles.z -= Time.deltaTime * capeSpeed;
 
-                if (angles.z < 360f - maxCapeRotation)
+                if (angles.z < 360f - capeGoal)
                 {
-                    angles.z = -maxCapeRotation;
+                    angles.z = -capeGoal;
                     capeState = CapeState.Stopped;
                 }
 
@@ -109,9 +132,9 @@ public class RemAnimation : MonoBehaviour
                 angles = cape.transform.rotation.eulerAngles;
                 angles.z += Time.deltaTime * capeSpeed;
 
-                if (angles.z > 360f - minCapeRotation)
+                if (angles.z > 360f - capeGoal)
                 {
-                    angles.z = -minCapeRotation;
+                    angles.z = -capeGoal;
                     capeState = CapeState.Stopped;
                 }
 
@@ -126,13 +149,42 @@ public class RemAnimation : MonoBehaviour
     public void SetMove()
     {
         moveState = MoveState.Walking;
-        capeState = CapeState.MovingUp;
+
+        if (capeState == CapeState.Stopped)
+        {
+            capeGoal = maxCapeRotation;
+        }
     }
 
-    public void SetJump()
+    public void SetJumpStart()
     {
-        moveState = MoveState.Walking;
+        if (moveState != MoveState.Walking)
+        {
+            capeGoal = minCapeRotation;
+        }
+        else
+        {
+            capeGoal = maxCapeRotation;
+        }
     }
+
+    public void SetJumpPeak()
+    {
+        capeGoal = 2 * maxCapeRotation;
+    }
+
+    public void SetJumpGround()
+    {
+        if (moveState != MoveState.Walking)
+        {
+            capeGoal = minCapeRotation;
+        }
+        else
+        {
+            capeGoal = maxCapeRotation;
+        }
+    }
+
     public void SetStop()
     {
         moveState = MoveState.ReturningToInitial;
@@ -140,6 +192,11 @@ public class RemAnimation : MonoBehaviour
         if ((limbDirection == 1 && leftLeg.transform.rotation.eulerAngles.z < maxLimbRotation) || (limbDirection == -1 && leftLeg.transform.rotation.eulerAngles.z > maxLimbRotation))
         {
             limbDirection *= -1;
+        }
+
+        if (capeState == CapeState.Stopped)
+        {
+            capeGoal = minCapeRotation;
         }
     }
 
