@@ -6,24 +6,27 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] RemAnimation remAnimation;
+
     public float MoveSpeed;
-    public float JumpHeight;
-    
+    [SerializeField] float jumpVel;
+    [SerializeField] float minTimeJumping, maxTimeJumping;
+
     private enum Direction { Left, Right };
     private Direction moveDir;
-    private bool isMoving;
-    private float jumpForce;
+    private bool isMoving, isJumping, jumpPressed;
+    private float timeSinceJumpStart = 0;
     private Transform tf;
     private Collider col;
     private Rigidbody rb;
 
     void Start()
     {
-        jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
         tf = this.gameObject.transform;
         rb = GetComponent<Rigidbody>();
         col = GetComponentInChildren<Collider>();
         isMoving = false;
+        isJumping = false;
+        jumpPressed = false;
     }
     
     public void Update()
@@ -31,6 +34,12 @@ public class PlayerInputHandler : MonoBehaviour
         if (isMoving)
         {
             UpdatePosition();
+            remAnimation.SetMove();
+        }
+
+        if (isJumping)
+        {
+            UpdateJump();
         }
     }
     private void UpdatePosition()
@@ -44,38 +53,68 @@ public class PlayerInputHandler : MonoBehaviour
             tf.position = new Vector3(tf.position.x + (MoveSpeed * Time.deltaTime), tf.position.y, tf.position.z);
         }
     }
+
+    private void UpdateJump()
+    {
+        timeSinceJumpStart += Time.deltaTime;
+
+        if ((timeSinceJumpStart < minTimeJumping && !jumpPressed) || (timeSinceJumpStart < maxTimeJumping && jumpPressed))
+        {
+            rb.velocity = new Vector3(0, jumpVel, 0);
+        }
+
+        if (IsGrounded() && rb.velocity.y <= 0)
+        {
+            isJumping = false;
+            timeSinceJumpStart = 0;
+            remAnimation.SetJumpGround();
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("Move");
-        Vector2 MoveVector = context.ReadValue<Vector2>();  
+        Vector2 MoveVector = context.ReadValue<Vector2>();
         if (MoveVector.x < 0)
         {
             isMoving = true;
             moveDir = Direction.Left;
             remAnimation.TurnLeft();
-            remAnimation.SetMove();
         }
         else if (MoveVector.x > 0)
         {
-            isMoving = true;         
+            isMoving = true;
             moveDir = Direction.Right;
             remAnimation.TurnRight();
-            remAnimation.SetMove();
         }
         else
         {
             isMoving = false;
+        }
+
+        if (!isMoving)
+        {
             remAnimation.SetStop();
         }
     }
     public void OnJump(InputAction.CallbackContext context)
-    {        
-        if (IsGrounded() && context.started)
+    {
+        if (IsGrounded() && !isJumping && context.started)
         {
-            Debug.Log("Add force");
-            rb.AddForce(jumpForce * Vector2.up, ForceMode.Impulse);
-            remAnimation.SetJump();
+            rb.velocity = new Vector3(0, jumpVel, 0);
+            isJumping = true;
+            remAnimation.SetJumpStart();
+            jumpPressed = true;
+            Debug.Log("Jump Pressed");
         }
+
+        if (isJumping && jumpPressed && context.performed)
+        {
+            jumpPressed = false;
+            remAnimation.SetJumpPeak();
+            Debug.Log("Jump Released");
+        }
+
+        
     }
     private bool IsGrounded()
     {
