@@ -10,6 +10,6 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = Vector3.Lerp(startPos, endPos, Mathf.PingPong(Time.time * moveSpeed, 1.0f));
+        this.transform.localPosition = Vector3.Lerp(startPos, endPos, Mathf.PingPong(Time.time * moveSpeed, 1.0f));
     }  
 }
