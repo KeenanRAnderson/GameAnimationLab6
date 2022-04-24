@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce39f85f8401f9a4d9ee6e70b7b41816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleRate: 100
+  teleRate: 150
   offsetVector: {x: 0, y: 3, z: -10}
   targetPlayer: {fileID: 1699770203}
 --- !u!114 &172691765 stripped
@@ -594,7 +594,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b9d58a519ab2f14cb2be70b73d8d70b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -603,11 +603,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 0
-  MinDistance: 0
-  MaxDistance: 10000
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -624,8 +624,8 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 0.9972534
+      value: 0.9992676
       inSlope: 0
       outSlope: 0
       tangentMode: 0
