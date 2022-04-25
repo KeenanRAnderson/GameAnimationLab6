@@ -2,57 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by Keenan Anderson
 public class SmolEnemy : MonoBehaviour
 {
     public int MoveSpeed;
-
+    public float Delay;
+    public float MoveTime;
+    public float WaitTime;
+    private Transform tf;
     private enum Action { MoveLeft, MoveRight, Wait }
 
     void Start()
     {
-        StartCoroutine(MoveEnemy());
+        tf = this.transform;
+        StartCoroutine("Movement");
     }
 
-    IEnumerator MoveEnemy()
+    IEnumerator Movement()
     {
-        float timer = 0.0f;
-        Action moveAction = Action.MoveLeft;
-        Transform tf = this.transform;
+        yield return new WaitForSeconds(Delay);
         while (true)
         {
-            moveAction = UpdateAction(timer);
-            if (moveAction == Action.MoveLeft)
-            {
-                tf.position = new Vector3(tf.position.x - (MoveSpeed * Time.deltaTime), tf.position.y, tf.position.z);
-            }
-            else if (moveAction == Action.MoveRight)
-            {
-                tf.position = new Vector3(tf.position.x + (MoveSpeed * Time.deltaTime), tf.position.y, tf.position.z);
-            }
-            timer += Time.deltaTime;
+            yield return MoveLeft();
+            yield return new WaitForSeconds(WaitTime);
+            yield return MoveRight();
+            yield return new WaitForSeconds(WaitTime);
         }
     }
 
-    private Action UpdateAction(float timer)
+    IEnumerator MoveLeft()
     {
-        Action moveAction;
-        if (timer >= 4)
+        Debug.Log("Move left");
+        float timer = 0.0f;
+        while (timer < MoveTime)
         {
-            timer = 0.0f;
-            moveAction = Action.MoveLeft;
+            tf.position = new Vector3(tf.position.x - (MoveSpeed * Time.deltaTime), tf.position.y, tf.position.z);
+            timer += Time.deltaTime;
+            yield return null;
         }
-        else if (timer > 3)
+        yield return 0;
+    }
+    IEnumerator MoveRight()
+    {
+        Debug.Log("Move Right");
+        float timer = 0.0f;
+        while (timer < MoveTime)
         {
-            moveAction = Action.Wait;
+            tf.position = new Vector3(tf.position.x + (MoveSpeed * Time.deltaTime), tf.position.y, tf.position.z);
+            timer += Time.deltaTime;
+            yield return null;
         }
-        else if (timer > 2)
-        {
-            moveAction = Action.MoveRight;
-        }
-        else
-        {
-            moveAction = Action.Wait;
-        }
-        return moveAction;
+        yield return 0;
     }
 }
