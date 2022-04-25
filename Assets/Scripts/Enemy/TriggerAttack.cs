@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by Keenan Anderson
 public class TriggerAttack : MonoBehaviour
 {
     private ProtectiveEnemy enemy;

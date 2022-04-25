@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7953263453480196272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7953263453480196274}
+  - component: {fileID: 7953263453480196273}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7953263453480196274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953263453480196272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7953263453480196273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953263453480196272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9129141386967e8498950a3a11e27026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZOFFSET: 15
+  startPlatform: {fileID: 8766808736367551075, guid: 84b77e8ca588d024aaa17a41d942b154, type: 3}
+  levelSegments:
+  - {fileID: 8766808736367551075, guid: 84b77e8ca588d024aaa17a41d942b154, type: 3}
+  - {fileID: 2551160844003409466, guid: 4920e2cbb3da254468838478c9cffa08, type: 3}
+  - {fileID: 8403211768752360253, guid: 6c94826be1eb37647adf0980fd046d4e, type: 3}
+  - {fileID: 8163029108064836055, guid: 13134592683ac3042b2b9693a24325a7, type: 3}
+  - {fileID: 575285314238864010, guid: 110d2b811225eaf4d8470ed97a13392f, type: 3}
+  - {fileID: 1178919935935045248, guid: 5027d7191a206b7499a276e31c8c0bc6, type: 3}
+  - {fileID: 1922652874346317262, guid: 3fa41a17318d566489faa69b2ee28067, type: 3}
+  - {fileID: 4450520987098865884, guid: 3ee30f08251765b418711a475eee5a34, type: 3}
+  - {fileID: 4217008873975811362, guid: 64ed193157ade0743ac09a499cbc9b33, type: 3}
+  - {fileID: 4098705594494772032, guid: 717394ac70327ae46b30252603a55f4c, type: 3}
+  teleporter: {fileID: 0}
+  vertical: 1
+  horizontal: 5
