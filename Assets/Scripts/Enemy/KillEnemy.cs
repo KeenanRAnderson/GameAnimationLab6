@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class KillEnemy : MonoBehaviour
 {
-    public ProtectiveEnemy enemy;
+    public GameObject enemy;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (!enemy.Attacked())
+            /*ProtectiveEnemy protEnemy = enemy.GetComponent<ProtectiveEnemy>();
+            if (protEnemy && !protEnemy.Attacked())
             {
                 enemy.gameObject.SetActive(false);
-            }
+            }*/
+            enemy.gameObject.SetActive(false);
         }
     }
 }
