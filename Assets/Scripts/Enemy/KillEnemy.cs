@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by Keenan Anderson
 public class KillEnemy : MonoBehaviour
 {
     public GameObject enemy;

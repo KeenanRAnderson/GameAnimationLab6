@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Written by Keenan Anderson and Matthew Fawcett
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] RemAnimation remAnimation;
@@ -113,8 +114,6 @@ public class PlayerInputHandler : MonoBehaviour
             remAnimation.SetJumpPeak();
             Debug.Log("Jump Released");
         }
-
-        
     }
     private bool IsGrounded()
     {
