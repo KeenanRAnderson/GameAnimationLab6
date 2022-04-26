@@ -128,9 +128,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, -Vector3.up);
+        Unparent();
         if (Physics.Raycast(ray, out hit, col.bounds.extents.y))
-        {
-            Unparent();
+        {      
             if (hit.collider != null)
             {
                 Debug.Log(hit.collider.gameObject.name);
