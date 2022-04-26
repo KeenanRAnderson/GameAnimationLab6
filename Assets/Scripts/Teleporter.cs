@@ -56,7 +56,11 @@ public class Teleporter : MonoBehaviour
         charging = true;
         return this.transform.position + teleportOffset;
     }
-    
+    public void SetTeleporterAndCameraFollow(Teleporter tele, CameraFollow cam)
+    {
+        linkedTeleporter = tele;
+        cameraView = cam;
+    }
     private void setPads(Material mat)
     {
         Pad1.GetComponent<MeshRenderer>().material = mat;
