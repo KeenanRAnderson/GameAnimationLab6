@@ -32,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
     
     public void Update()
     {
+
         if (isMoving)
         {
             UpdatePosition();
@@ -42,6 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             UpdateJump();
         }
+        CheckMovingPlatform();
     }
     private void UpdatePosition()
     {
@@ -118,7 +120,29 @@ public class PlayerInputHandler : MonoBehaviour
     private bool IsGrounded()
     {
         //Sends a raycast to see if there is an object below collider. May need to adjust constant for better behaviour
-        Debug.DrawRay(transform.position, -Vector3.up, Color.red, 1f, false);
-        return Physics.Raycast(transform.position, -Vector3.up, col.bounds.extents.y + 0.1f);
+        Debug.DrawRay(transform.position, -Vector3.up, Color.red, col.bounds.extents.y + 0.5f, false);
+        return Physics.Raycast(transform.position, -Vector3.up, col.bounds.extents.y + 0.5f);
+    }
+
+    private void CheckMovingPlatform()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit, col.bounds.extents.y + 0.5f))
+        {
+            Unparent();
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.gameObject.CompareTag("MovingPlatform"))
+                {
+                    this.gameObject.transform.parent = hit.collider.gameObject.transform;
+                }
+            }
+        }
+    }
+    private void Unparent()
+    {
+        this.gameObject.transform.parent = null;
     }
 }
