@@ -120,15 +120,15 @@ public class PlayerInputHandler : MonoBehaviour
     private bool IsGrounded()
     {
         //Sends a raycast to see if there is an object below collider. May need to adjust constant for better behaviour
-        Debug.DrawRay(transform.position, -Vector3.up, Color.red, col.bounds.extents.y + 0.5f, false);
-        return Physics.Raycast(transform.position, -Vector3.up, col.bounds.extents.y + 0.5f);
+        Debug.DrawRay(transform.position, -Vector3.up, Color.red, col.bounds.extents.y, false);
+        return Physics.Raycast(transform.position, -Vector3.up, col.bounds.extents.y);
     }
 
     private void CheckMovingPlatform()
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, -Vector3.up);
-        if (Physics.Raycast(ray, out hit, col.bounds.extents.y + 0.5f))
+        if (Physics.Raycast(ray, out hit, col.bounds.extents.y))
         {
             Unparent();
             if (hit.collider != null)
