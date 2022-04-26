@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Written by Keenan Anderson
-public class KillPlayerOnCollide : MonoBehaviour
+public class WinGame : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(other.gameObject.GetComponentInParent<PlayerCommands>().Die());
+            StartCoroutine(other.GetComponentInParent<PlayerCommands>().Win());
         }
     }
 }
