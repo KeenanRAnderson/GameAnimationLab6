@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Written by Matthew Fawcett
 public class Teleporter : MonoBehaviour
 {
     [SerializeField] Teleporter linkedTeleporter;

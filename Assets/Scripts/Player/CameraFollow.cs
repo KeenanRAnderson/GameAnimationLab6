@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Written by Keenan Anderson
+//Written by Keenan Anderson and Matthew Fawcett
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] float teleRate;
