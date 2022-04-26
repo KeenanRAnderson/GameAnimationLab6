@@ -1084,7 +1084,11 @@ PrefabInstance:
       objectReference: {fileID: 892648163}
     - target: {fileID: 7953263453480196273, guid: b05e89c702888044aacf39e3bc4a3b0c, type: 3}
       propertyPath: vertical
-      value: 3
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953263453480196273, guid: b05e89c702888044aacf39e3bc4a3b0c, type: 3}
+      propertyPath: horizontal
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7953263453480196273, guid: b05e89c702888044aacf39e3bc4a3b0c, type: 3}
       propertyPath: teleporter

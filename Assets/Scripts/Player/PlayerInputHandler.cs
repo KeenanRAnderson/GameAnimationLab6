@@ -136,13 +136,13 @@ public class PlayerInputHandler : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.CompareTag("MovingPlatform"))
                 {
-                    this.gameObject.transform.parent = hit.collider.gameObject.transform;
+                    this.gameObject.transform.parent.parent = hit.collider.gameObject.transform;
                 }
             }
         }
     }
     private void Unparent()
     {
-        this.gameObject.transform.parent = null;
+        this.gameObject.transform.parent.parent = null;
     }
 }
