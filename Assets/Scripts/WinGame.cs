@@ -9,7 +9,7 @@ public class WinGame : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<PlayerCommands>().Win();
+            StartCoroutine(other.GetComponentInParent<PlayerCommands>().Win());
         }
     }
 }

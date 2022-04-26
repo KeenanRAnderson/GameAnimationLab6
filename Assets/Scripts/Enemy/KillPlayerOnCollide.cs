@@ -9,7 +9,7 @@ public class KillPlayerOnCollide : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerCommands>().Die();
+            StartCoroutine(other.gameObject.GetComponentInParent<PlayerCommands>().Die());
         }
     }
 }

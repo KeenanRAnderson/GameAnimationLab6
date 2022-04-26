@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
     void GenerateLevel()
     {
         Instantiate(startPlatform, this.transform.position, Quaternion.identity);
-        Instantiate(winPlatform, this.transform.position + new Vector3(SEGMENT_SIZE * horizontal + SEGMENT_SIZE, 0, ZOFFSET * vertical), Quaternion.identity);
+        Instantiate(winPlatform, this.transform.position + new Vector3(SEGMENT_SIZE * horizontal + SEGMENT_SIZE, 0, ZOFFSET * (vertical - 1)), Quaternion.identity);
         /*for (int i = 0; i < vertical; i++)
         {
             Instantiate(teleporter, this.transform.position + new Vector3(SEGMENT_SIZE * horizontal + SEGMENT_SIZE, 0, ZOFFSET * i), Quaternion.identity);
